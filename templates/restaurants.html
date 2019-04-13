@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/html">
+
+<body>
+
+<h1> Restaurants </h1>
+
+<a href='{{url_for('newrestaurant') }}'>Create new Restaurant</a>
+</br>
+
+<!--MESSAGE FLASHING-->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+<ul>
+{% for message in messages %}
+  <li><strong>{{message}}</strong></li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+{% for i in restaurants %}
+
+<div>
+
+<p>{{i.name}}</p>
+<a href='{{url_for('restaurantMenu', restaurant_id = i.id) }}'>View Menu</a>
+</br>
+<a href='{{url_for('editRestaurant', restaurant_id = i.id) }}'>Edit Restaurant</a>
+</br>
+<a href = '{{url_for('deleteRestaurant', restaurant_id = i.id ) }}'>Delete Restaurant</a>
+</div>
+
+{% endfor %}
+
+</body>
+
+</html>
